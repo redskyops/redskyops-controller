@@ -523,12 +523,14 @@ func createKustomizePatches(patchSpec []optimizev1beta1.PatchTemplate, trial *op
 		patches[idx] = types.Patch{
 			Patch: string(data),
 			Target: &types.Selector{
-				Gvk: resid.Gvk{
-					Group:   ref.GroupVersionKind().Group,
-					Version: ref.GroupVersionKind().Version,
-					Kind:    ref.GroupVersionKind().Kind,
+				KrmId: types.KrmId{
+					Gvk: resid.Gvk{
+						Group:   ref.GroupVersionKind().Group,
+						Version: ref.GroupVersionKind().Version,
+						Kind:    ref.GroupVersionKind().Kind,
+					},
+					Name: ref.Name,
 				},
-				Name: ref.Name,
 			},
 		}
 	}
