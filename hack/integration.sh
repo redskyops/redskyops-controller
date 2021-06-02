@@ -21,7 +21,7 @@ stats() {
   ${REDSKYCTL_BIN} generate experiment -f hack/app.yaml
   kubectl get pods -o wide
   kubectl get trial -o wide
-  kubectl logs -n redsky-system -l control-plane=controller-manager --tail=-1
+  kubectl logs -n stormforge-system -l control-plane=controller-manager --tail=-1
 }
 
 generateAndWait() {
@@ -47,7 +47,7 @@ generateAndWait() {
 
   echo "Wait for trial deletion tasks to finish running"
   kubectl wait deployment \
-    redsky-default-prometheus-server \
+    optimize-default-prometheus-server \
     --for=delete \
     --timeout ${waitTime}
   kubectl wait job \
